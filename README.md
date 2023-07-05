@@ -11,15 +11,20 @@ module aws_iam_identity_provider {
 ```
 
 ## Examples
-### Create an 'AdministratorAccess' predefined permission set
+### Create an 'AdministratorAccess' and 'Billing' predefined permission sets
 ```hcl
 module aws_iam_identity_provider {
   source = "git::ssh://git@bitbucket.org/thesoftwarehouse/terraform-modules-bis.git//aws_iam_identity_provider"
 
-  permission_sets = {
-    "AdministratorAccess" = {
-      session_duration          = "PT1H"
-      predefined_permission_set = "AdministratorAccess"
+  predefined_permission_sets = {
+    administrator_access = {
+      create = true
+    }
+
+    billing = {
+      create           = true
+      relay_state      = "https://eu-west-1.console.aws.amazon.com/billing/"
+      session_duration = "PT2H"
     }
   }
 }
@@ -30,13 +35,14 @@ module aws_iam_identity_provider {
 module aws_iam_identity_provider {
   source = "git::ssh://git@bitbucket.org/thesoftwarehouse/terraform-modules-bis.git//aws_iam_identity_provider"
 
-  permission_sets = {
-    "DescribeEC2" = {
-      session_duration = "PT2H"
-      relay_state      = "https://eu-central-1.console.aws.amazon.com/ec2/"
+  custom_permission_sets = [
+    {
+      name             = "DescribeEC2"
       description      = "This policy grants permissions to describe EC2 instances."
+      relay_state      = "https://eu-west-1.console.aws.amazon.com/ec2/"
+      session_duration = "PT2H"
 
-      custom_permission_set = jsonencode({
+      policy = jsonencode({
         Version = "2012-10-17"
         Statement = [
           {
@@ -49,6 +55,6 @@ module aws_iam_identity_provider {
         ]
       })
     }
-  }
+  ]
 }
 ```
