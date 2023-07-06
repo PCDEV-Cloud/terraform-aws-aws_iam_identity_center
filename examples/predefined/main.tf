@@ -17,3 +17,11 @@ module "aws_iam_identity_center" {
     }
   }
 }
+
+output "permission_set_arns" {
+  value = module.aws_iam_identity_center.permission_set_arns
+}
+
+output "permission_set_ids" {
+  value = module.aws_iam_identity_center.permission_set_ids
+}

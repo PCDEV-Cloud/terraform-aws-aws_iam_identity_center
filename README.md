@@ -3,7 +3,7 @@
 ## Usage
 
 ```hcl
-module aws_iam_identity_provider {
+module aws_iam_identity_center {
   source = "github.com/PCDEV-Cloud/terraform-aws-aws_iam_identity_center"
 
   # Configuration options
@@ -13,8 +13,8 @@ module aws_iam_identity_provider {
 ## Examples
 ### Create an 'AdministratorAccess' and 'Billing' predefined permission sets
 ```hcl
-module aws_iam_identity_provider {
-  source = "git::ssh://git@bitbucket.org/thesoftwarehouse/terraform-modules-bis.git//aws_iam_identity_provider"
+module aws_iam_identity_center {
+  source = "github.com/PCDEV-Cloud/terraform-aws-aws_iam_identity_center"
 
   predefined_permission_sets = {
     administrator_access = {
@@ -32,8 +32,8 @@ module aws_iam_identity_provider {
 
 ### Create a custom permission set with permission to describe EC2 instances
 ```hcl
-module aws_iam_identity_provider {
-  source = "git::ssh://git@bitbucket.org/thesoftwarehouse/terraform-modules-bis.git//aws_iam_identity_provider"
+module aws_iam_identity_center {
+  source = "github.com/PCDEV-Cloud/terraform-aws-aws_iam_identity_center"
 
   custom_permission_sets = [
     {
