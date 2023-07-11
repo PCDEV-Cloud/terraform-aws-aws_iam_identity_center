@@ -1,15 +1,19 @@
 output "permission_set_arns" {
-  value = merge(
-    { for i, k in aws_ssoadmin_permission_set.predefined : i => k.arn },
-    { for i, k in aws_ssoadmin_permission_set.custom : i => k.arn }
-  )
+  value       = module.permission_sets.permission_set_arns
   description = "A map of permission set ARNs."
 }
 
 output "permission_set_ids" {
-  value = merge(
-    { for i, k in aws_ssoadmin_permission_set.predefined : i => k.id },
-    { for i, k in aws_ssoadmin_permission_set.custom : i => k.id }
-  )
+  value       = module.permission_sets.permission_set_ids
   description = "A map of permission set IDs."
+}
+
+output "user_ids" {
+  value       = module.users_and_groups.user_ids
+  description = ""
+}
+
+output "group_ids" {
+  value       = module.users_and_groups.group_ids
+  description = ""
 }

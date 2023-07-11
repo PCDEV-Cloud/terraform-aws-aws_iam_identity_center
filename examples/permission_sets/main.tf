@@ -2,8 +2,20 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-module "aws_iam_identity_center" {
-  source = "../../"
+module "permission_sets" {
+  source = "../../modules/permission_sets"
+
+  predefined_permission_sets = {
+    administrator_access = {
+      create = true
+    }
+
+    billing = {
+      create           = true
+      relay_state      = "https://eu-west-1.console.aws.amazon.com/billing/"
+      session_duration = "PT2H"
+    }
+  }
 
   custom_permission_sets = [
     {
@@ -31,9 +43,9 @@ module "aws_iam_identity_center" {
 }
 
 output "permission_set_arns" {
-  value = module.aws_iam_identity_center.permission_set_arns
+  value = module.permission_sets.permission_set_arns
 }
 
 output "permission_set_ids" {
-  value = module.aws_iam_identity_center.permission_set_ids
+  value = module.permission_sets.permission_set_ids
 }
