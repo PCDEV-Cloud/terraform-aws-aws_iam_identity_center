@@ -1,10 +1,4 @@
-################################################################################
-# Predefined Permission Sets
-################################################################################
-
 locals {
-  predefined_permission_sets = { for i, k in var.predefined_permission_sets : local.predefined_permission_set_definitions[i].name => merge(k, local.predefined_permission_set_definitions[i]) if k.create }
-
   predefined_permission_set_definitions = {
     administrator_access = {
       name        = "AdministratorAccess"
@@ -51,12 +45,4 @@ locals {
       description = "This policy grants permissions to view resources and basic metadata across all AWS services."
     }
   }
-}
-
-################################################################################
-# Custom Permission Sets
-################################################################################
-
-locals {
-  custom_permission_sets_2 = { for i in var.custom_permission_sets : i.name => i }
 }
