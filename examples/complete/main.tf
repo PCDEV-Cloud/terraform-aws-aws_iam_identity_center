@@ -27,11 +27,11 @@ module "aws_iam_identity_center" {
   groups = [
     {
       display_name = "Group1"
-      description  = "description"
+      description  = "This is 1st group."
     },
     {
       display_name = "Group2"
-      description  = "description"
+      description  = "This is 2nd group."
 
       members = [
         "john.doe",
