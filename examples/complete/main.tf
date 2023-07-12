@@ -78,12 +78,12 @@ module "aws_iam_identity_center" {
 
   account_assignments = [
     {
-      account_ids     = ["140679301063"]
+      account_ids     = ["123456789012"]
       usernames       = ["john.doe"]
       permission_sets = ["AdministratorAccess"]
     },
     {
-      account_ids     = ["140679301063"]
+      account_ids     = ["123456789012"]
       usernames       = ["john.doe", "john.doe2"]
       groups          = ["Group1", "Group2"]
       permission_sets = ["DescribeEC2"]
