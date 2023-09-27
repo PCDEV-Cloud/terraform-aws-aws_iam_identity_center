@@ -10,10 +10,15 @@ output "permission_set_ids" {
 
 output "user_ids" {
   value       = module.users_and_groups.user_ids
-  description = ""
+  description = "A map of user IDs."
 }
 
 output "group_ids" {
   value       = module.users_and_groups.group_ids
-  description = ""
+  description = "A map of group IDs."
+}
+
+output "instance_arn" {
+  value       = data.aws_ssoadmin_instances.this.identity_store_ids[0]
+  description = "An IAM Identity Center instance ARN."
 }
