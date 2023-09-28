@@ -5,7 +5,7 @@ data "aws_ssoadmin_instances" "this" {}
 ################################################################################
 
 locals {
-  list_of_permission_sets = flatten([for i in var.account_assignments : i.permission_sets])
+  list_of_permission_sets = distinct(flatten([for i in var.account_assignments : i.permission_sets]))
   permission_set_arns     = { for i, k in data.aws_ssoadmin_permission_set.this : k.name => k.arn }
 }
 
